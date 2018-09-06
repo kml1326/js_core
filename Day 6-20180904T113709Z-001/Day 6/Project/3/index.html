@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+  <link rel="stylesheet" type="text/css" href="asset/main.css">
+</head>
+<body>
+	<div class="round">
+		<p class="one time">12</p>
+		<p class="two time">3</p>
+		<p class="three time">6</p>
+		<p class="four time">9</p>
+		<div class="line sec"></div>
+		<div class="line minuts"></div>
+		<div class="line hours"></div>
+	</div>
+
+	<script type="text/javascript">
+		//  second  minut  and hour 
+
+		var second = document.querySelector(".sec");
+		var minut = document.querySelector(".minuts");
+		var hour = document.querySelector(".hours");
+
+		function setTime() {
+			var now = new Date();
+			var getHourIn12HrsFormat = now.getHours();
+  
+  		getHourIn12HrsFormat = getHourIn12HrsFormat > 12 ? (24 - getHourIn12HrsFormat : getHourIn12HrsFormat;
+  
+  		var moveHour = (getHourIn12HrsFormat * 30) - 90;
+  		var moveMinut =  (now.getMinutes() * 6) - 90;
+  		var moveSec =  (now.getSeconds() * 6) - 90;
+		
+			second.style.transform = `rotate(${moveSec}deg)`;
+			minut.style.transform = `rotate(${moveMinut}deg)`;
+			hour.style.transform = `rotate(${moveHour}deg)`;
+		}
+		
+		setTime();	
+		setInterval(setTime,1000);
+
+	</script>
+</body>
+</html>

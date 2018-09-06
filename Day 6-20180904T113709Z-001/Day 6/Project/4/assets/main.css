@@ -1,0 +1,15 @@
+.wrapper{
+	width: 40%;
+	margin: 100px auto;
+}
+.cell{
+	box-sizing: border-box;
+	background: lime;
+	width: 10%;
+	height: 40px;
+	float: left;
+	border: 2px solid white;
+}
+.clr{
+	background: blue;
+}

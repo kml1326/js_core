@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+</head>
+<body>
+  <h1>About Me</h1>
+
+  <ul>
+    <li>Nickname: <span id="nickname"></span></li>
+    <li>Favorites:  <span id="favorites"></span></li>
+    <li>Hometown: <span id="hometown"></span></li>
+   </ul>
+
+   <script type="text/javascript">
+
+   	var fontFamily = document.querySelector("body");
+   	fontFamily.style.fontFamily = "Arial, sans-serif";
+
+    var nickname = document.querySelector("#nickname");
+    nickname.innerHTML = `sam`;
+    var favorites = document.querySelector("#favorites");
+    favorites.innerHTML = `dance`;
+    var hometown = document.querySelector("#hometown");
+    hometown.innerHTML = `india`;
+
+    var list =  document.querySelector("li");
+    var listItem = list.classList.add("listitem");
+    list.style.color = "red";
+
+
+    var img = document.createElement("img");
+      img.setAttribute("src", "img.jpeg");
+      document.body.appendChild(img);
+
+
+   </script>
+ </body>
+</html>
