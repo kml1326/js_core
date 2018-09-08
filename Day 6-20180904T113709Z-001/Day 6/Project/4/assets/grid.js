@@ -30,7 +30,7 @@ function changeClr(){
 	}
 
 changeClr();
-setInterval(changeClr, 500)
+setInterval(changeClr, 500);
 
 
 

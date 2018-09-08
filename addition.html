@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>addition</title>
+	<style type="text/css">
+		.wrapper{
+			width: 600px;
+			margin: 200px auto;
+		}
+		.displayBox{
+			background: gray;
+			display: inline-block;
+			height: 100px;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<input type="" name="" id="firstInput">
+		<span>+</span>
+		<input type="" name="" id="secondInput">
+		<button id="btn">ADD</button>
+		<div class="displayBox">
+			<span id="display"></span>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		var addButton = document.querySelector("#btn");
+
+		addButton.addEventListener("click",event => {
+			var firstValue = document.querySelector("#firstInput").value;
+			console.log(firstValue);
+			var secondValue = document.querySelector("#secondInput").value;
+			console.log(secondValue);
+
+			var display = document.querySelector("#display"); 
+			display.innerHTML = Number(firstValue) + Number(secondValue);
+
+		})
+
+	</script>
+</body>
+</html>
