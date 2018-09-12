@@ -1,0 +1,74 @@
+
+
+body{
+	background: url(../img/background.jpeg) center no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+.aside{
+	box-sizing: border-box;
+	width: 25%;
+	display: inline-block;
+}
+.main{
+	box-sizing: border-box;
+	display: inline-block;
+	width: 75%;
+	float: right;
+}
+.to-do-title{
+	color: white;
+	font-size: 20px;
+	font-weight: 700;
+	padding-left: 40px;
+}
+li{
+	background: white;
+	padding: .75rem;
+	list-style-type: none;
+	font-size: 1rem;
+	border: 1px solid;
+	font-family: sans-serif;
+	text-transform: uppercase;
+}
+.toggle{
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	background: #bec1c6;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+.adding-box{
+	padding-left: 15%;
+}
+#input-todo{
+	background: white;
+	width: 62%;
+	height: 25px;
+	margin-right: 5px;
+}
+#add{
+	background: white;
+	padding: 5px;
+	height: 30px;
+}
+.main{
+	padding-left: 100px;
+	text-align: center;
+	padding-top: 20%;
+}
+.message,
+.time{
+	color: white;
+	font-size: 2rem;
+	padding-bottom: 30px;
+}
+.time{
+	font-size: 5rem;
+	font-weight: 800;
+	letter-spacing: .4rem;
+}
+.checked{
+	background: gray;
+}
