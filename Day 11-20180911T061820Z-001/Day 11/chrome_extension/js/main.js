@@ -11,19 +11,29 @@ var hours = document.getElementById("hour");
 var message = document.querySelector(".message");
 var quote = document.querySelector(".quotes");
 var author = document.querySelector(".author");
+var userName = document.querySelector(".user-name");
 var toDoArray = JSON.parse(localStorage.getItem("toDo")) || [];
-var name = localStorage.getItem("userName")|| prompt("Enter Your Name");
-var changingBg = ["background1.jpg","background2.jpeg","background2.jpg","background3.jpg","background4.jpg","background5.jpg","background6.jpg"]
+var name = localStorage.getItem("userName");
 
 
+if(name != "null") {
+  message.innerHTML = displayMessage(hour) + name;
+}
+
+// action function declaration
+function action(e) {
+  if(e.code == "Enter") {
+    localStorage.setItem("userName",userName.value);
+    message.innerHTML = displayMessage(hour) + userName.value;
+  } else return;
+}
 
 //Declaration setTime function for show time
 function setTime(){
-	var now = new Date ();
-	var hour = now.getHours();
-	var minute = now.getMinutes();
-	var second = now.getSeconds();
-  displayMessage(hour);      // call displayMessage function for display message accordin to hour
+  var now = new Date ();
+  var hour = now.getHours();
+  var minute = now.getMinutes();
+  var second = now.getSeconds();
   seconds.innerHTML = twoDigitTime(second);
 	minutes.innerHTML = twoDigitTime(minute);
 	hours.innerHTML = twoDigitTime(hour);
@@ -35,29 +45,16 @@ setInterval(setTime,1000);   // time interval for setTimefunction
 
 // displayMessage function  declaration
 function displayMessage(time) {
-  localStorage.setItem("userName",name);
     if(time < 12) {
-    message.innerHTML = `Good Morning ${name}`;
+      return "Good morning ";
   } else {
-    if(time > 12 || time <= 16) {
-    message.innerHTML = `Good Afternoon ${name}`;
+    if(time < 17 ) {
+      return "Good Afternoon ";
     } else {
-    message.innerHTML = `Good Evening ${name}`;
+      return "Good Evening ";
     }
   }
 }
-
-
-//  declaration chaningBgs function for changing background image
-function changingBgs(value) {
-  var bgIndex = value[Math.floor(Math.random()*6 +1)];
-  body.style.background =  `url(../img/${bgIndex}) center no-repeat`;
-  body.style.backgroundSize = "cover";
-}
-changingBgs(changingBg);           // call chaningBgs function 
-setInterval(() => changingBgs(changingBg),10000);    // set time for change background
-
-
 
 // declaration twoDigitTime function for change time one digit to two digit
 function twoDigitTime(time) {
@@ -93,7 +90,8 @@ function displayList(todoList) {
       `<li>
           <input type="checkbox" class="toggle" data-id=${i} ${toDo.done ? "checked" : ""}>
           <label for="toggle" class="list-item" data-id=${i}>${toDo.name}</label>
-          <span class="delete" data-id=${i}>X</span>
+          <span class="edit" data-id=${i}>✍️</span>
+          <span class="delete" data-id=${i}>x</span>
         </li>`
     )
   }).join(''); 
@@ -106,12 +104,11 @@ function checkBox(e){
 	if(checkedBox !== "toggle") return;
 	let id = e.target.dataset.id;
 	toDoArray[id].done = !toDoArray[id].done;
-	localStorage.setItem("toDo",JSON.stringify(toDoArray));
-  console.log(toDoArray)
+	localStorage.setItem("toDo",JSON.stringify(toDoArray));s
 } 
 
 function deleteToDo(e){
-	var deleteToDo = e.target.className;
+	let deleteToDo = e.target.className;
 	if(deleteToDo == "delete") {
 	let id = e.target.dataset.id;
 	toDoArray.splice(id,1);
@@ -120,16 +117,26 @@ function deleteToDo(e){
 	displayList(toDoArray);
 }
 
+function editToDo(e) {
+  let editToDo = e.target.className;
+  let id = e.target.dataset.id;
+  let editName = toDoArray[id].name;
+  console.log(ulElement); 
 
+}
 
 
 displayList(toDoArray);
+
+userName.addEventListener("keypress", action);
 
 addButton.addEventListener("click",addList );
 
 ulElement.addEventListener("click", checkBox);
 
 ulElement.addEventListener("click", deleteToDo);
+
+ulElement.addEventListener("click", editToDo);
 
 
 
