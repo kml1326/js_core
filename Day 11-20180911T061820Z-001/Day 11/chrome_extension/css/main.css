@@ -1,8 +1,8 @@
 
 
 body{
-	background: url(../img/background.jpeg) center no-repeat;
-	background-size: cover;
+	/*background: url(../img/background2.jpeg) center no-repeat;
+	background-size: cover;*/
 	height: 100vh;
 }
 .aside{
@@ -38,6 +38,7 @@ li{
 	background: #bec1c6;
 	vertical-align: middle;
 	margin-right: 20px;
+	cursor: pointer;
 }
 .adding-box{
 	padding-left: 15%;
@@ -61,7 +62,6 @@ li{
 .message,
 .time{
 	color: white;
-	font-size: 2rem;
 	padding-bottom: 30px;
 }
 .time{
@@ -69,6 +69,34 @@ li{
 	font-weight: 800;
 	letter-spacing: .4rem;
 }
-.checked{
-	background: gray;
+.message{
+	word-spacing: .5rem;
+	letter-spacing: .15rem;
+	font-size: 2.5rem;
 }
+.delete{
+	color: darkgray;
+	float: right;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+.quotes{
+	color: white;
+	font-size: 1.5rem;
+}
+.author{
+	color: white;
+	font-size: 1.3rem;
+}
+
+input[type=checkbox]:checked + label {
+	text-decoration: line-through;
+	filter: blur(1px);	
+}
+/*input[type=checkbox]{
+	visibility: hidden;
+}
+input[type="checkbox"]:not(:checked) {
+	visibility: visible;
+}*/
