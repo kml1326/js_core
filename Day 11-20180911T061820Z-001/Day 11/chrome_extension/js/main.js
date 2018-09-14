@@ -51,7 +51,7 @@ function displayMessage(time) {
     if(time < 17 ) {
       return "Good Afternoon ";
     } else {
-      return "Good Evening ";
+      return "Good morning ";
     }
   }
 }
