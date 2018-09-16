@@ -13,79 +13,84 @@ var quote = document.querySelector(".quotes");
 var author = document.querySelector(".author");
 var userName = document.querySelector(".user-name");
 var toDoArray = JSON.parse(localStorage.getItem("toDo")) || [];
-var name = localStorage.getItem("userName");
+var name = localStorage.getItem("userName") || "";
 
+function currentTime() {
+  var now = new Date();
 
-if(name != "null") {
-  message.innerHTML = displayMessage(hour) + name;
-}
-
-// action function declaration
-function action(e) {
-  if(e.code == "Enter") {
-    localStorage.setItem("userName",userName.value);
-    message.innerHTML = displayMessage(hour) + userName.value;
-  } else return;
+  return {
+    second: now.getSeconds(),
+    minute: now.getMinutes(),
+    hour: now.getHours()
+  }
 }
 
 //Declaration setTime function for show time
 function setTime(){
-  var now = new Date ();
-  var hour = now.getHours();
-  var minute = now.getMinutes();
-  var second = now.getSeconds();
-  seconds.innerHTML = twoDigitTime(second);
-	minutes.innerHTML = twoDigitTime(minute);
-	hours.innerHTML = twoDigitTime(hour);
+  seconds.innerHTML = twoDigitTime(currentTime().second);
+  minutes.innerHTML = twoDigitTime(currentTime().minute);
+  hours.innerHTML = twoDigitTime(currentTime().hour);
 }
 setTime();                   // call setTime function
 setInterval(setTime,1000);   // time interval for setTimefunction
 
 
+// condition for user name exist or not
+if(name) {
+  message.innerHTML = displayMessage(currentTime().hour) + name;
+}
+
+// action function declaration
+function action(e) {
+  if(e.code == "Enter") {
+    localStorage.setItem("userName", userName.value);
+    message.innerHTML = displayMessage(currentTime().hour) + userName.value;
+  } else {
+    return;
+  }
+}
 
 // displayMessage function  declaration
 function displayMessage(time) {
     if(time < 12) {
       return "Good morning ";
   } else {
-    if(time < 17 ) {
+    if(12 < time < 17 ) {
       return "Good Afternoon ";
     } else {
-      return "Good morning ";
+      return "Good Evening ";
     }
   }
 }
 
-// declaration twoDigitTime function for change time one digit to two digit
+// declaration twoDigitTime function for change time one digit to two digit e.g. 2:00 to 02:00
 function twoDigitTime(time) {
   if(time < 10) {
     time = `0${time}`;
-    return time;
-  } else {
-    return time;
   }
+  
+  return time;
 }
 
 
 
-// addList function for add todo list and call displayList function
+// addList function to add todo list and call displayList function
 function addList() {
-var objList = {
-	name : "",
-	done : false
-};
+  var objList = {
+  	name : "",
+  	done : false
+  };
 	objList.name = inputToDo.value;
 	toDoArray.push(objList);
 	inputToDo.value = "";
+  localStorage.setItem("toDo",JSON.stringify(toDoArray));
 	displayList(toDoArray);
-	localStorage.setItem("toDo",JSON.stringify(toDoArray));
 }
 
 
-
 // displayList function  declaration
-function displayList(todoList) {
-  ulElement.innerHTML = todoList.map((toDo, i) => {
+function displayList(toDoList) {
+  ulElement.innerHTML = toDoList.map((toDo, i) => {
     return (
       `<li>
           <input type="checkbox" class="toggle" data-id=${i} ${toDo.done ? "checked" : ""}>
@@ -98,25 +103,32 @@ function displayList(todoList) {
 }
 
 
-// 
-function checkBox(e){
+// checkBox function declaration
+function checkBox(e) {
 	var checkedBox = e.target.className;
-	if(checkedBox !== "toggle") return;
+	if(checkedBox !== "toggle")
+    return;
 	let id = e.target.dataset.id;
 	toDoArray[id].done = !toDoArray[id].done;
-	localStorage.setItem("toDo",JSON.stringify(toDoArray));s
+	localStorage.setItem("toDo", JSON.stringify(toDoArray));
 } 
 
+
+// deleteToDo function declaration
 function deleteToDo(e){
 	let deleteToDo = e.target.className;
 	if(deleteToDo == "delete") {
-	let id = e.target.dataset.id;
-	toDoArray.splice(id,1);
-} else return;
-	localStorage.setItem("toDo",JSON.stringify(toDoArray));
+	 let id = e.target.dataset.id;
+	 toDoArray.splice(id, 1);
+  } else {
+    return;
+  }
+	localStorage.setItem("toDo", JSON.stringify(toDoArray));
 	displayList(toDoArray);
 }
 
+
+// editToDo function declaration
 function editToDo(e) {
   let editToDo = e.target.className;
   let id = e.target.dataset.id;
@@ -125,17 +137,22 @@ function editToDo(e) {
 
 }
 
-
+// call displayList function for display toDoArray default
 displayList(toDoArray);
 
+// set keypress event for get username and call action function
 userName.addEventListener("keypress", action);
 
-addButton.addEventListener("click",addList );
+// set click event on addButton and call addList function
+addButton.addEventListener("click", addList );
 
+//  set click event on ulElement and call checkBox function
 ulElement.addEventListener("click", checkBox);
 
+//  set click event on ulElemet and call deleteToDo function
 ulElement.addEventListener("click", deleteToDo);
 
+//  set click event on ulElement and call editToDo function
 ulElement.addEventListener("click", editToDo);
 
 
@@ -554,9 +571,10 @@ ulElement.addEventListener("click", editToDo);
   ]
 
 function showQuotes() {
-    var index = Math.floor(Math.random()*102);
+  var index = Math.floor(Math.random()*102);
   quote.innerHTML = `" ${quotes[index].quote} "`;
   author.innerHTML = quotes[index].author;
 }
+
 showQuotes();
 setInterval(showQuotes, 50000);

@@ -39,7 +39,7 @@ var correctAnswers = [
 
 function action() {
   display();
-  interval = setInterval(action, 1000);
+  interval = setInterval(action, 5000);
 }
 
 
@@ -53,7 +53,6 @@ function wrongAnswer(ans) {
      wrapper.innerHTML = `<p class="question">${questionArray[i]}</p>
      <p class="question">Correct Answer : ${ans}</p>
      <div><img src="2.png" class="correct"></div>`
-     console.log("clearInterval");
 }
 
 function checkAns(e) {
@@ -82,17 +81,15 @@ function checkAns(e) {
 //     return seconds;
 // }
 // var time = setInterval(timeRemaining,1000);
-
-
-
  var i = -1;
 
+
 function display() {
-     i = i+1;
-      if(i > questionArray.length-1) {
-      wrapper.innerHTML = `<div class="start-quiz"><p>Again Start Quiz</p></div>`
-       clearInterval(interval);
-    }
+    //   if(i > questionArray.length-1) {
+    //   wrapper.innerHTML = `<div class="start-quiz"><p>Again Start Quiz</p></div>`
+    //    clearInterval(interval);
+    // }
+    i += 1;
    wrapper.innerHTML = `<p class="time-remaining">Time Remaining : ${i}</p>
     <p class="question">${questionArray[i]}</p>
     <div class="answer-opt">
