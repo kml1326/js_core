@@ -1,0 +1,19 @@
+{
+  "name": "testingjs",
+  "version": "1.0.0",
+  "description": "this package belongs to testingJs",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "jest --watchAll"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.9.3"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0"
+  }
+}

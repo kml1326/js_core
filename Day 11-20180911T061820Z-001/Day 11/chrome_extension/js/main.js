@@ -52,15 +52,10 @@ function action(e) {
 
 // displayMessage function  declaration
 function displayMessage(time) {
-    if(time < 12) {
-      return "Good morning ";
-  } else {
-    if(12 < time < 17 ) {
-      return "Good Afternoon ";
-    } else {
-      return "Good Evening ";
-    }
-  }
+    if(time < 15) {
+      return "Good Morning ";
+  } 
+    return "Good Evening ";
 }
 
 // declaration twoDigitTime function for change time one digit to two digit e.g. 2:00 to 02:00
