@@ -1,12 +1,15 @@
 console.log(this.document === document); // Output
+// true
 
 console.log(this === window); //Output
+// true
 
 
 var myFunction = function () {
   console.log(this);
 };
 myFunction(); // Output
+// window object
 
 
 function f1() {
@@ -14,7 +17,7 @@ function f1() {
   return this;
 }
 console.log(f1() === window); //Output
-
+// false
 
 
 
@@ -26,7 +29,8 @@ function foo () {
 foo();	//Output ??
 console.log(this === window) // Output
 
-
+// true
+//true
 
 
 
@@ -36,6 +40,8 @@ console.log(this === window) // Output
 	console.log(this === window);
 })(); //Output
 
+//Anonymous function invocation
+// true
 
 // This for IIFE in strict mode
 function foo () {
@@ -45,6 +51,8 @@ function foo () {
 }
 
 foo();// Output
+//simple function call
+// false
 
 
 
@@ -53,6 +61,7 @@ myObject.someMethod = function () {
   console.log(this);
 };
 myObject.someMethod(); //Value Of This
+// someMethod whole object
 
 
 
@@ -94,9 +103,13 @@ let fun1 = user.foo1;
 fun1() // Output ??
 user.foo1()  // Output ??
 
+//simple function call
+// false
+// true
+// false
 
-//this will call apply and bind
 
+//This will call apply and bind
 
 this.x = 9;
 var module = {
@@ -105,12 +118,15 @@ var module = {
 };
 
 module.getX(); // Output ??
+// 81
 
 var retrieveX = module.getX;
 retrieveX(); //Output ??
+//9
 
 var boundGetX = retrieveX.bind(module);
 boundGetX(); // Output ??
+// 81
 
 
 // Call with new constructor
@@ -127,7 +143,10 @@ function Person(fn, ln) {
 
 let person = new Person("John", "Reed");
 person.displayName(); // Output
+// name : John Reed
 let person2 = new Person("Paul", "Adams");
 person2.displayName(); // Output
+// name : Paul Adams
 
 person.displayName.call(person2); // Output ??
+// name : Paul Adams
