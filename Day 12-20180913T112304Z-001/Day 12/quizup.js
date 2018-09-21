@@ -34,10 +34,46 @@ var correctAnswers = [
 
   var startQuiz = document.querySelector(".start-quiz");
   var timeRemaining = document.querySelector(".time-remain");
+  var areaOfQues = document.querySelector(".question");
+  var areaOfAnswers = document.querySelector(".ans-opns");
+  var i = -1;
 
 function action(e) {
   startQuiz.style.display = "none";
-  timeRemaining.style.display = "block"; 
+  timeRemaining.style.display = "block";
+  displayQuiz();
+}
+
+function displayQuiz() {
+  i += 1;
+  areaOfQues.innerHTML = questionArray[i];
+  areaOfAnswers.innerHTML = `<div class="ans">A. ${answerArray[i][0]}</div>
+                             <div class="ans">B. ${answerArray[i][1]}</div>
+                             <div class="ans">C. ${answerArray[i][2]}</div>
+                             <div class="ans">D. ${answerArray[i][3]}</div>`
+}
+
+function checkAns(e) {
+  var anserClass = e.target.className;
+  if(anserClass =="ans"){
+    var correctAns = e.target.innerHTML;
+    var answer = correctAnswers[i];
+      if(correctAns == answer) {
+        correctAnswer();
+      } else {
+        wrongAnswer(answer);
+      }
+ }  
+}
+
+function correctAnswer() {
+    areaOfAnswers.innerHTML = `<p class="result">Correct</p>
+    <div><img src="1.png" class="result_img"></div>`
+}
+
+function wrongAnswer(ans) {
+  areaOfAnswers.innerHTML = `<p class="result">Correct Answer : ${ans}</p>
+  <div><img src="2.png" class="result_img"></div>`
 }
 
 
@@ -49,86 +85,8 @@ function action(e) {
 
 
 
-
-
-
-
 startQuiz.addEventListener("click", action);
+areaOfAnswers.addEventListener("click", checkAns);
 
 
 
-
-
-
-
-
-//   var startQuiz = document.querySelector(".start-quiz");
-//   var wrapper = document.querySelector(".wrapper");
-//   var interval;
-
-
-// function action() {
-//   display();
-//   interval = setInterval(action, 5000);
-// }
-
-
-
-// function correctAnswer() {
-//      wrapper.innerHTML = `<p class="question">Correct</p>
-//      <div><img src="1.png" class="correct"></div>`
-// }
-
-// function wrongAnswer(ans) {
-//      wrapper.innerHTML = `<p class="question">${questionArray[i]}</p>
-//      <p class="question">Correct Answer : ${ans}</p>
-//      <div><img src="2.png" class="correct"></div>`
-// }
-
-// function checkAns(e) {
-//   var anserClass = e.target.className;
-//   if(anserClass =="ans"){
-//     var correctAns = e.target.innerHTML;
-//     var answer = correctAnswers[i];
-//       if(correctAns == answer) {
-//         correctAnswer();
-//       } else {
-//         wrongAnswer(answer);
-//       }
-//  }  
-// }
-
-
-// // var seconds = 31;
-// // function timeRemaining() {
-// //     seconds -= 1;
-// //     // if(seconds < 1) { 
-// //     //   seconds = 30;
-// //     //   timeRemaining();
-// //     // } else{
-// //     //   return seconds;
-// //     // } 
-// //     return seconds;
-// // }
-// // var time = setInterval(timeRemaining,1000);
-//  var i = -1;
-
-
-// function display() {
-//     //   if(i > questionArray.length-1) {
-//     //   wrapper.innerHTML = `<div class="start-quiz"><p>Again Start Quiz</p></div>`
-//     //    clearInterval(interval);
-//     // }
-//     i += 1;
-//    wrapper.innerHTML = `<p class="time-remaining">Time Remaining : ${i}</p>
-//     <p class="question">${questionArray[i]}</p>
-//     <div class="answer-opt">
-//       <div class="ans">A. ${answerArray[i][0]}</div>
-//       <div class="ans">B. ${answerArray[i][1]}</div>
-//       <div class="ans">C. ${answerArray[i][2]}</div>
-//       <div class="ans">D. ${answerArray[i][3]}</div>
-//     </div>`
-//  }
-
-//   startQuiz.addEventListener("click", action);
-//   wrapper.addEventListener("click", checkAns);
