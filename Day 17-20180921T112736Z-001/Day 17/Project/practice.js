@@ -1,7 +1,7 @@
 // 1. Make a function in the Array.prototype called suffle that suffles the given array
 // eg: [1,3,6,7,9] => [3,7,6,1,9]
 
-Array.prototype.shuffle = function () {
+Array.prototype.suffle = function () {
     var arrayLength = this.length - 1;
 
     while (arrayLength > 0) {
