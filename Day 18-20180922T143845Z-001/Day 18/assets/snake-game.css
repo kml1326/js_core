@@ -1,0 +1,12 @@
+.wrapper{
+	width: 80%;
+	margin: 0 auto;
+}
+.cell{
+	box-sizing: border-box;
+	width: 2.5%;
+	background: green;
+	height: 20px;
+	float: left;
+	border: 2px solid white;
+}
