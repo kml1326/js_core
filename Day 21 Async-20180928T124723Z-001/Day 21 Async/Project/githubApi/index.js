@@ -1,5 +1,6 @@
 var userImg = document.querySelector('.user-img img')
 var userNameArea = document.querySelector('.user-name');
+var main = document.querySelector('.main');
 var showUserName = document.querySelector('.show-user-name');
 var userImg = document.querySelector('.user-img');
 var followers = document.querySelector('.follower-data');
@@ -9,6 +10,7 @@ var bio = document.querySelector('.bio-data');
 var spinner = document.querySelector('.lds-ring');
 var userObject;
 spinner.style.display = 'none';
+main.style.display = 'none';
 
 
 function getDetails(userName) {
@@ -31,6 +33,7 @@ function action(e) {
 	let userName = userNameArea.value;
 	getDetails(userName);
 	spinner.style.display = 'inline-block';
+	main.style.display = 'grid';
 	}   
 }
 
