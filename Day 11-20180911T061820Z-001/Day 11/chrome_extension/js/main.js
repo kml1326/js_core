@@ -15,6 +15,20 @@ var userName = document.querySelector(".user-name");
 var toDoArray = JSON.parse(localStorage.getItem("toDo")) || [];
 var name = localStorage.getItem("userName") || "";
 
+
+function setBackground() {
+  let clientId = '04baca264584816f0ef1b146f6e1a989861fab654fc4ddc5d2474eea214ad614';
+  fetch(`https://api.unsplash.com/photos/random/?client_id=${clientId}`)
+  .then(data =>  data.json()).then(image => {
+  body.style.background = `url(${image.urls.regular}) no-repeat`;
+  body.style.backgroundSize = 'cover';
+})
+}
+setBackground();
+
+
+
+
 function currentTime() {
   var now = new Date();
 
