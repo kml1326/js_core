@@ -2,6 +2,7 @@
 
 //Global variable declaration
 var body = document.querySelector("body");
+var weather = document.querySelector('.weather');
 var ulElement = document.getElementById("to-do-list");
 var addButton = document.getElementById("add");
 var inputToDo = document.getElementById("input-todo");
@@ -12,10 +13,13 @@ var message = document.querySelector(".message");
 var quote = document.querySelector(".quotes");
 var author = document.querySelector(".author");
 var userName = document.querySelector(".user-name");
+var settingIcon = document.querySelector('.setting');
+var location = document.querySelector('.changeLocation');
+var settingOptionList = document.querySelector('.setting-option');
 var toDoArray = JSON.parse(localStorage.getItem("toDo")) || [];
 var name = localStorage.getItem("userName") || "";
 
-
+// declaration & call setBackground function for change background 
 function setBackground() {
   let clientId = '04baca264584816f0ef1b146f6e1a989861fab654fc4ddc5d2474eea214ad614';
   fetch(`https://api.unsplash.com/photos/random/?client_id=${clientId}`)
@@ -26,9 +30,22 @@ function setBackground() {
 }
 setBackground();
 
+// function for show weather 
+function showWeather() {
+  // let cityName = prompt('Where are you');
+  let apiKey = 'b20156877d92ec0e892a415edb752569';
+  fetch(`http://api.openweathermap.org/data/2.5/weather?q=rakkar&appid=${apiKey}`)
+  .then(data => data.json()).then(object => {
+    let tempKelvin = object.main.temp;
+    let tempCel = tempKelvin - 273.15;
+    let icon = object.weather[0].icon;
+    weather.innerHTML =
+      `${object.name}, ${object.weather[0].description}<img class="weather-icon" src="http://openweathermap.org/img/w/${icon}.png">${parseInt(tempCel)}&#176 C`;
+  })
+}
+showWeather();
 
-
-
+// Declaration currentTime function
 function currentTime() {
   var now = new Date();
 
@@ -40,7 +57,7 @@ function currentTime() {
 }
 
 //Declaration setTime function for show time
-function setTime(){
+function setTime() {
   seconds.innerHTML = twoDigitTime(currentTime().second);
   minutes.innerHTML = twoDigitTime(currentTime().minute);
   hours.innerHTML = twoDigitTime(currentTime().hour);
@@ -146,6 +163,15 @@ function editToDo(e) {
 
 }
 
+//
+function settingOption() {
+  settingOptionList.innerHTML = `<ul><li class="changeLocation">Change Your Location</li></ul>`
+}
+
+function actionSetting(e) {
+  
+}
+
 // call displayList function for display toDoArray default
 displayList(toDoArray);
 
@@ -164,6 +190,10 @@ ulElement.addEventListener("click", deleteToDo);
 //  set click event on ulElement and call editToDo function
 ulElement.addEventListener("click", editToDo);
 
+// set click event on settingIcon and call settingOption function
+settingIcon.addEventListener('click', settingOption);
+
+body.addEventListener('click', actionSetting);
 
 
 
