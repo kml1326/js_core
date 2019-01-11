@@ -1,0 +1,28 @@
+.container {
+  
+  width: 60%;
+  margin: 0 auto;
+  border: 5px solid;
+  height: 90vh;
+}
+.box {
+  height: 100px;
+  background: gray;
+  margin: 10px 0;
+/*  position: relative;*/
+}
+.inner-box {
+	background: #ffd700;
+	height: 80px;
+	width: 95%;
+	margin: 0 auto;
+	position: relative;
+	top: 10px;
+	box-shadow: 0 0 1px 2px #716565;
+}
+.hold {
+	background: orange;
+}
+.invisible {
+	display: none;
+}
